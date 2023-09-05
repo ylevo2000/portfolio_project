@@ -1,0 +1,18 @@
+# xuất ra danh sách nhân viên và mức lương thực nhận của nhân viên đó
+select concat(first_name," ",last_name) as"Họ và tên",employee_role.role_id, role_name, role_allowance,role_bonus,salary,
+salary+(salary*role_allowance)+role_bonus as "net_salary"
+from employee inner join employee_role
+on employee.role_id = employee_role.role_id
+group by net_salary desc;
+# xuất ra phòng ban có mức lương thực nhận cao nhất
+select concat(first_name," ",last_name) as"Họ và tên",employee_id,employee.department_id,department_name,employee_role.role_id, role_name, 
+role_allowance,role_bonus,salary,max(salary+(salary*role_allowance)+role_bonus) as "max_net_salary"
+from employee
+inner join employee_role on employee.role_id = employee_role.role_id
+inner join department on employee.department_id = department.department_id;
+# xuất ra phòng ban có mức lương thực nhận thấp nhất
+select concat(first_name," ",last_name) as"Họ và tên",employee_id,employee.department_id,department_name,employee_role.role_id, role_name, 
+role_allowance,role_bonus,salary,min(salary+(salary*role_allowance)+role_bonus) as "min_net_salary"
+from employee
+inner join employee_role on employee.role_id = employee_role.role_id
+inner join department on employee.department_id = department.department_id;
