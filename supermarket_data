@@ -371,3 +371,7 @@ role_allowance,role_bonus,salary,min(salary+(salary*role_allowance)+role_bonus) 
 from employee
 inner join employee_role on employee.role_id = employee_role.role_id
 inner join department on employee.department_id = department.department_id;
+# xuất ra các chi nhánh(branch) bán hàng không dùng voucher
+select distinct(branch.branch_id),branch_name
+from orders inner join branch on orders.branch_id = branch.branch_id
+where voucher_id is null;
